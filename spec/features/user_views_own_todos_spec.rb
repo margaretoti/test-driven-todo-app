@@ -15,3 +15,19 @@ RSpec.feature "User views own todos" do
     expect(page).not_to have_todo("Buy eggs")
   end
 end
+
+# Example using a block
+# scenario "successfully" do
+#   as_user "person@example.com" do
+#     create_todo "Buy milk"
+#     create_todo "Buy eggs"
+#   end
+# end
+#
+# def as_user(email, &block)
+#   sign_in_as email
+#
+#   block.call
+#
+#   sign_in_as "" # mimics sign out
+# end
