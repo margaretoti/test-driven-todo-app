@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_action :authenticate # see if we are signed in and if we are not then we will redirect to sign_in_path
 
   def index # if @todos is nil, set index method in controller
-    @todos = Todo.where(owner_email: session[:current_email])
+    @todos = todos
   end
 
   def new
@@ -10,7 +10,19 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.create(params.require(:todo).permit(:title).merge(owner_email: session[:current_email]))
+    todos.create(todo_params)
+    # Todo.where(owber_email: current_email).create(todo_params)
+    # Todo.create(todo_params.merge(owner_email: current_email)
     redirect_to root_path
+  end
+
+  private
+
+  def todos # this is a scope
+    @todos = Todo.where(owner_email: session[:current_email])
+  end
+
+  def todo_params
+    params.require(:todo).permit(:title)
   end
 end
