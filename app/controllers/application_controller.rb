@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
   def sign_in(email)
     session[:current_email] = email
   end
+
+  def current_user
+    User.new(current_email)
+    # OpenStruct.new(
+    #   todos: Todo.where(owner_email: current_email)
+    # )
+  end
 end

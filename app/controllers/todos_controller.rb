@@ -19,7 +19,8 @@ class TodosController < ApplicationController
   private
 
   def todos # this is a scope
-    @todos = Todo.where(owner_email: session[:current_email])
+    current_user.todos
+    # @todos = Todo.where(owner_email: session[:current_email])
   end
 
   def todo_params
