@@ -2,7 +2,8 @@ class TodosController < ApplicationController
   before_action :authenticate # see if we are signed in and if we are not then we will redirect to sign_in_path
 
   def index # if @todos is nil, set index method in controller
-    @todos = todos
+    @incomplete_todos = todos.incomplete
+    @completed_todos = todos.completed
   end
 
   def new
@@ -11,7 +12,7 @@ class TodosController < ApplicationController
 
   def create
     todos.create(todo_params)
-    # Todo.where(owber_email: current_email).create(todo_params)
+    # Todo.where(owner_email: current_email).create(todo_params)
     # Todo.create(todo_params.merge(owner_email: current_email)
     redirect_to root_path
   end

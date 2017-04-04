@@ -8,7 +8,20 @@ module Features
     click_on "Create Todo"
   end
 
-  def have_todo(title)
-    have_css("ul.todos li", text: title)
+  def mark_todo_complete(title)
+    # find("li:contains('#{title}')").click_on("Mark complete")
+
+    # this is a block that does same thing as above
+    within ("li:contains('#{title}')") do
+      click_on("Mark complete")
+    end
   end
-end 
+
+  def have_completed_todo(title)
+    have_css("ul.todos.completed li", text: title)
+  end
+
+  def have_todo(title)
+    have_css("ul.todos.incomplete li", text: title)
+  end
+end
