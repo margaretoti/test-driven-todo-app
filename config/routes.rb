@@ -3,4 +3,9 @@ Rails.application.routes.draw do
   root to: "todos#index"
 
   resources :todos, only: [:new, :create]
+
+  get "/sign_in", to: "sessions#new", as: :sign_in
+  #resources :session, only: [:new] - why didn't we do it this way
+
+  resources :sessions, only: [:create]
 end
