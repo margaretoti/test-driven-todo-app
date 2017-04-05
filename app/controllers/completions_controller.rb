@@ -5,4 +5,12 @@ class CompletionsController < ApplicationController
 
     redirect_to root_path
   end
+
+  def destroy
+    todo = current_user.todos.find(params[:todo_id])
+    todo.completed_at = nil
+    todo.save!
+
+    redirect_to root_path
+  end
 end

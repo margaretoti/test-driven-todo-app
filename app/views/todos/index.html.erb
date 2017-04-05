@@ -13,6 +13,7 @@
   <% @completed_todos.each do |todo| %>
     <li>
       <%= todo.title %>
+      <%= link_to "Mark incomplete", todo_completions_path(todo), method: :delete %>
     </li>
   <% end %>
 </ul>
